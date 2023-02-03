@@ -54,9 +54,9 @@ You can also use this application as a model to start developing your own applic
 * Press the RUN button.
 * Wait until the "Emulator - HelloV2XWorld"  windows appears.
 * Read the Term and Conditions, Scroll down and click on the "Accept" button.
-=> A map is displayed centered on your current location
-=> The blue icon represents yourself
-=> The red icons represents the other road users close to you
+** A map is displayed centered on your current location
+** The blue icon represents yourself
+** The red icons represents the other road users close to you
 
 
 
