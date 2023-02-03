@@ -1,13 +1,13 @@
 # HelloV2XWorld-Android
 
-In this repository you can find an example of V2X application that show how to use the V2X-SDK in a ready to use Android Application.
+In this repository you can find an example of V2X application that shows how to use the V2X-SDK in a ready to use Android Application.
 
 ## Description
 
-The HelloV2XWorld application demonstrates how it's easy to create a V2X application and exchange V2X messages with other road users .
+The HelloV2XWorld application demonstrates how easy it is to create a V2X application and exchange V2X messages with other road users .
 This application is powered by the V2X-SDK and the STEP platform developed by Vodafone.
-By cloning this project you will be able to create and execute your first V2X application in less than 15 minutes.
-The HelloV2XWorld application show a map with all the road users close to your location.
+By cloning this project, you will be able to create and execute your first V2X application in less than 15 minutes.
+The HelloV2XWorld application shows a map with all the road users close to your location.
 You can also use this application as a model to start developing your own application.
 
 ## Getting Started
@@ -18,7 +18,7 @@ You can also use this application as a model to start developing your own applic
 * A software able to open rar & zip archives is already installed on your laptop.
 * You have some experience in Android application development in Java using Android Studio.
 * You already created One virtual device in Android Studio (Android 8 or higher).
-* Your Internet connectivity is up and working.
+* Your Internet connectivity is up and running.
 * You are available for 15 minutes.
 
 ### Download the V2X-SDK library for Android
@@ -28,7 +28,7 @@ You can also use this application as a model to start developing your own applic
 * Navigate to the page "Documentation" and select the "SDK documentation for Android" option.
 * In the "SDK documentation for Android" page , click on the "Download SDK" button.
 => Your browser downloads the archive "VodafoneV2X_Android_SDK.rar".
-* Open the archive , extract the V2X-SDK library file called "v2xsdk-release.aar" and save it on your laptop. 
+* Open the archive, extract the V2X-SDK library file called "v2xsdk-release.aar" and save it on your laptop. 
 
 ### Clone the HelloV2XWorld Application
 
