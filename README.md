@@ -57,6 +57,8 @@ You can also use this application as a model to start developing your own applic
 * A map is displayed centered on your current location
 * The blue icon represents yourself
 * The red icons represent the other road users close to you
+* When clicking on the blue icon, app displays you ITS information: StationID, StationType, Speed, Heading
+* You can change your station type by accessing the setting page
 
 
 
