@@ -79,7 +79,7 @@ You can also use this application as a model to start developing your own applic
 * Read the Term and Conditions, Scroll down and click on the "Accept" button.  
 ![image](https://user-images.githubusercontent.com/122537808/217490204-3ef41aac-bb5d-44b3-8949-1dc00d234979.png)  
 * Provide the Location Permission to the HelloV2XWorld application  
-![image](https://user-images.githubusercontent.com/122537808/217490588-ad1ed671-03dc-4e13-ab3d-e99f80b73af3.png)
+![image](https://user-images.githubusercontent.com/122537808/217511629-7be9c480-d669-4695-bc4e-d69b83c7d563.png)
 
 * A map is displayed centered on your current location  
 ![image](https://user-images.githubusercontent.com/122537808/217490887-29a8f43e-abe4-4a7f-a179-c152ee8cdc9c.png)
