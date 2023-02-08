@@ -98,8 +98,11 @@ You can also use this application as a model to start developing your own applic
 * The red icons represent the other road users close to you   
 ![image](https://user-images.githubusercontent.com/122537808/217504782-04ae9d13-63b0-448b-8b66-72ececb24650.png)
 
-* When clicking on the blue icon, app displays you ITS information: StationID, StationType, Speed, Heading    
-![image](https://user-images.githubusercontent.com/122537808/217491129-8c3f59a4-5f91-465a-a6a0-2f2b3e1c7b79.png)
+* When clicking on the blue icon, app displays you ITS information: StationID, StationType, Speed, Heading  
+![image](https://user-images.githubusercontent.com/122537808/217570016-ea6b3c81-3e69-498d-bb5b-e69bcdf4f783.png)
+
+* When clicking on any red icon, app displays you the CAM information: StationID, StationType, Speed, Heading   
+![image](https://user-images.githubusercontent.com/122537808/217569716-3a8175b0-5e30-4a42-9ade-4800a537dd68.png)
 
 * You can change your station type by accessing the setting page  
 ![image](https://user-images.githubusercontent.com/122537808/217491318-d9fbc51d-af98-4844-a8ae-f74883cc86f7.png)  
