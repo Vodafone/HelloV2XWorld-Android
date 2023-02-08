@@ -40,6 +40,14 @@ You can also use this application as a model to start developing your own applic
 **=> Your browser downloads the archive "VodafoneV2X_Android_SDK.rar"**  
 * Open the archive, extract the V2X-SDK library file called "v2xsdk-release.aar" and save it on your laptop. 
 
+### Download the Android V2X-SDK documentation
+
+* In the "SDK documentation for Android" page , click on the "Download documentation" button.  
+![image](https://user-images.githubusercontent.com/122537808/217552264-0fb27214-1d75-424b-8740-71678e837216.png)
+**=> Your browser downloads the archive "Android_V2X_SDK_Documentation_Vabc.zip"**    
+* Open the archive and save on your laptop the Javadoc and the user Guide
+  
+  
 ### Clone the HelloV2XWorld Application
 
 * Open Android Studio.
