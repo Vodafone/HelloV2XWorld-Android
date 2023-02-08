@@ -76,6 +76,8 @@ You can also use this application as a model to start developing your own applic
 
 ### Run the HelloV2XWorld application on the virtual Android device
 
+**Please, be aware that the HelloV2XWorld application needs to access to your location , it's why it requests the Location Permission.**  
+
 * Select your virtual Device in Android Studio.  
 ![image](https://user-images.githubusercontent.com/122537808/217487784-c74199e4-65a5-4a39-ab67-2b28fcfa8062.png)  
 * Press the RUN button.  
