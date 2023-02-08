@@ -85,7 +85,8 @@ You can also use this application as a model to start developing your own applic
 ![image](https://user-images.githubusercontent.com/122537808/217490887-29a8f43e-abe4-4a7f-a179-c152ee8cdc9c.png)
 
 * The blue icon represents yourself
-* The red icons represent the other road users close to you  
+* The red icons represent the other road users close to you   
+![image](https://user-images.githubusercontent.com/122537808/217504782-04ae9d13-63b0-448b-8b66-72ececb24650.png)
 
 * When clicking on the blue icon, app displays you ITS information: StationID, StationType, Speed, Heading    
 ![image](https://user-images.githubusercontent.com/122537808/217491129-8c3f59a4-5f91-465a-a6a0-2f2b3e1c7b79.png)
