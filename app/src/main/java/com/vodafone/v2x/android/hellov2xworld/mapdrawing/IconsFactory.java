@@ -5,9 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-
 import com.vodafone.v2x.android.hellov2xworld.AndroidApplication;
 import com.vodafone.v2x.android.hellov2xworld.R;
+
+
 /**
  * This class is responsible for getting all the icons the app needs. It uses the Singleton pattern to ensure
  * that only one instance of the class is created and all instances of the class refer to the same object.
@@ -34,6 +35,9 @@ public class IconsFactory {
      * Bitmap representation of the CAM icon
      */
     private Bitmap mCAMIcon;
+
+
+
     /**
      * Constructor that creates an instance of the class and preloads the icons.
      *
@@ -43,6 +47,8 @@ public class IconsFactory {
         mContext = context;
         preloadIcons();
     }
+
+
     /**
      * Returns the static instance of the class
      *
@@ -51,6 +57,8 @@ public class IconsFactory {
     public static IconsFactory getInstance() {
         return instance;
     }
+
+
     /**
      * Preloads the icons by decoding them from the resources folder and storing them as Bitmaps
      */
@@ -60,6 +68,8 @@ public class IconsFactory {
         mCAMIcon = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.arrowsred80), 60, 60, false);
 
     }
+
+
     /**
      * Returns the ITS icon as a Drawable
      *
@@ -68,6 +78,8 @@ public class IconsFactory {
     public Drawable getITSIcon() {
         return new BitmapDrawable(mContext.getResources(), mITSIcon);
     }
+
+
     /**
      * Returns the ITS unavailable icon as a Drawable
      *
@@ -76,6 +88,8 @@ public class IconsFactory {
     public Drawable getITSUnavailableIcon() {
         return new BitmapDrawable(mContext.getResources(), mITSIconUnavailable);
     }
+
+
     /**
      * Returns the CAM icon as a Drawable
      *

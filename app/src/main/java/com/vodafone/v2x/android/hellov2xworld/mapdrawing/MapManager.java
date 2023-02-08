@@ -1,23 +1,18 @@
 package com.vodafone.v2x.android.hellov2xworld.mapdrawing;
 
 import static android.content.Context.LOCATION_SERVICE;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-
 import androidx.core.app.ActivityCompat;
-
 import com.vodafone.v2x.sdk.android.facade.records.ITSLocationRecord;
 import com.vodafone.v2x.sdk.android.facade.records.cam.CAMRecord;
-
 import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-
 import java.util.List;
 
 /**
@@ -55,7 +50,6 @@ public class MapManager {
     }
 
     /**
-
      Initializes the settings for the map and map camera, including visibility, tile source,
      enabling, multi-touch controls, zoom level, and setting the center of the map to the last known GPS location.
      If the GPS location is not available, it defaults to a predefined location.
@@ -88,7 +82,6 @@ public class MapManager {
      *
      * @param itsLocationRecord The ITSLocationRecord instance to be drawn on the map.
      */
-
     public void onITSUpdate(ITSLocationRecord itsLocationRecord) {
         if (mITSDrawing != null) {
             mITSDrawing.draw(itsLocationRecord);
@@ -100,7 +93,6 @@ public class MapManager {
      *
      * @param camRecords The list of CAMRecord instances to be drawn on the map.
      */
-
     public void onCAMUpdate(List<CAMRecord> camRecords) {
         if (camRecords != null) {
             mCAMDrawing.draw(camRecords);

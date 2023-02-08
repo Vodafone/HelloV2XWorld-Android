@@ -2,22 +2,20 @@ package com.vodafone.v2x.android.hellov2xworld.view.activities;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.vodafone.v2x.android.hellov2xworld.R;
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivitySettingsBinding;
 import com.vodafone.v2x.android.hellov2xworld.utils.JavaMapUtils;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
 import com.vodafone.v2x.sdk.android.facade.enums.StationType;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-/**
 
+
+/**
  This class represents the activity for settings configuration for the app.
  It provides an interface for setting up the station type, application ID, and application token.
  */

@@ -3,25 +3,21 @@ package com.vodafone.v2x.android.hellov2xworld.view.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.github.barteksc.pdfviewer.link.DefaultLinkHandler;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.vodafone.v2x.android.hellov2xworld.R;
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivitySplashBinding;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import pub.devrel.easypermissions.PermissionRequest;
 import timber.log.Timber;
-/**
 
+/**
  The SplashActivity class is the starting activity of the app. It displays the terms and conditions of using the app, and prompts the user to accept them before accessing the main app.
  The class also checks the necessary permissions required for the app to function and requests for them if necessary.
  */

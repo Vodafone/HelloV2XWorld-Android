@@ -2,18 +2,14 @@ package com.vodafone.v2x.android.hellov2xworld.mapdrawing;
 
 import android.os.Handler;
 import android.os.Looper;
-
 import com.vodafone.v2x.sdk.android.facade.V2XSDK;
 import com.vodafone.v2x.sdk.android.facade.enums.StationType;
 import com.vodafone.v2x.sdk.android.facade.records.cam.CAMRecord;
-
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
-
 import java.util.Iterator;
 import java.util.List;
-
 import timber.log.Timber;
 
 /**

@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivityMainBinding;
 import com.vodafone.v2x.android.hellov2xworld.mapdrawing.MapManager;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
@@ -16,7 +14,6 @@ import com.vodafone.v2x.sdk.android.facade.SDKConfiguration;
 import com.vodafone.v2x.sdk.android.facade.V2XSDK;
 import com.vodafone.v2x.sdk.android.facade.enums.MqttClientKind;
 import com.vodafone.v2x.sdk.android.facade.enums.ServiceMode;
-import com.vodafone.v2x.sdk.android.facade.enums.StepInstance;
 import com.vodafone.v2x.sdk.android.facade.events.BaseEvent;
 import com.vodafone.v2x.sdk.android.facade.events.EventCamListChanged;
 import com.vodafone.v2x.sdk.android.facade.events.EventITSLocationListChanged;
@@ -25,40 +22,33 @@ import com.vodafone.v2x.sdk.android.facade.events.EventType;
 import com.vodafone.v2x.sdk.android.facade.events.EventV2XConnectivityStateChanged;
 import com.vodafone.v2x.sdk.android.facade.records.ITSLocationRecord;
 import com.vodafone.v2x.sdk.android.facade.records.cam.CAMRecord;
-
 import org.osmdroid.config.Configuration;
-
 import java.util.List;
-
 import timber.log.Timber;
-/**
 
+
+/**
  MainActivity is the main activity class of the application which is responsible for handling the main functionality
  of the application, such as initialization of the V2XSDK, starting V2X service, subscribing to events, etc.
  */
 public class MainActivity extends AppCompatActivity implements EventListener {
     /**
-
      Object that holds the UI elements and provides access to them
      */
     private ActivityMainBinding binding;
     /**
-
      Boolean to check the device orientation
      */
     private boolean isOrientationLandscape;
     /**
-
      Object to manage the map in the activity
      */
     private MapManager mMapManager;
     /**
-
      SDK Configuration instance
      */
     private SDKConfiguration sdkConfig;
     /**
-
      Method that is called when the activity is created.
      It initializes the UI and checks the device orientation.
      @param savedInstanceState a Bundle containing the data it most recently supplied in
@@ -78,8 +68,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         }
 
     }
-    /**
 
+    /**
      Method that is called when the activity becomes visible.
      It initializes the V2X service and starts it if necessary.
      */
@@ -96,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             }
         }
     }
-    /**
 
+    /**
      Method that is called when the activity is resumed.
      It loads the map configuration and initializes/starts the V2X service if necessary.
      */
@@ -130,8 +120,9 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             }
         }
     }
-    /**
 
+
+    /**
      The onPause method in the class pauses the binding.map and calls super.onPause().
      */
     @Override
@@ -139,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         super.onPause();
         binding.map.onPause();
     }
-    /**
 
+    /**
      The onDestroy method in the class logs the state of isOrientationLandscape and stops the V2XSDK services if the device is in landscape orientation.
      */
     @Override
@@ -158,6 +149,10 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         }
     }
 
+    /**
+     * Initialize and configure the V2X Service
+     * Note: Only the CAM SuBService is enabled.
+     */
     private void initV2XService() {
         try {
             Parameters parameters = Parameters.getInstance(this);
@@ -171,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             cfg.withCamServiceMode(ServiceMode.TxAndRx);
             cfg.withCAMPublishGroup(parameters.getCamPublishGroup());
             cfg.withCAMSubscribeGroup(parameters.getCamSubscribeGroup());
-            cfg.withStepInstance(StepInstance.DE_PROD_FRANKFURT);
             sdkConfig = cfg.build();
             V2XSDK.getInstance().initV2XService(this.getApplicationContext(), sdkConfig);
         } catch (Exception e) {
@@ -179,6 +173,9 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         }
     }
 
+    /**
+     * Start the V2XService.
+     */
     private void startV2XService() {
         try {
             if (!V2XSDK.getInstance().isV2XServiceStarted()) {
@@ -188,14 +185,16 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             e.printStackTrace();
         }
     }
-    /**
 
+
+    /**
      The onClickSettingsLogo method in the class starts the SettingsActivity when the settings logo is clicked.
      @param view The view associated with the click event.
      */
     public void onClickSettingsLogo(View view) {
         startActivity(new Intent(this, SettingsActivity.class));
     }
+
     /**
      * This method handles events that occur on the message bus.
      *

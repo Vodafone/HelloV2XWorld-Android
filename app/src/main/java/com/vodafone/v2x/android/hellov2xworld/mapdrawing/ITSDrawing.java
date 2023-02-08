@@ -2,15 +2,12 @@ package com.vodafone.v2x.android.hellov2xworld.mapdrawing;
 
 import android.os.Handler;
 import android.os.Looper;
-
 import com.vodafone.v2x.sdk.android.facade.V2XSDK;
 import com.vodafone.v2x.sdk.android.facade.models.GpsLocation;
 import com.vodafone.v2x.sdk.android.facade.records.ITSLocationRecord;
-
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
-
 import timber.log.Timber;
 
 /**
@@ -21,7 +18,6 @@ import timber.log.Timber;
 public class ITSDrawing {
 
     private static final String TAG = "ITSDrawing";
-
     private final Marker mITSLocationMarker;
     private final MapView mMap;
     private final IconsFactory iconsFactory;
