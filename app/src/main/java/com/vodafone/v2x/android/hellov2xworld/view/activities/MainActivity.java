@@ -6,12 +6,15 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.vodafone.v2x.android.hellov2xworld.BuildConfig;
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivityMainBinding;
 import com.vodafone.v2x.android.hellov2xworld.mapdrawing.MapManager;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
 import com.vodafone.v2x.sdk.android.facade.InvalidConfigException;
 import com.vodafone.v2x.sdk.android.facade.SDKConfiguration;
 import com.vodafone.v2x.sdk.android.facade.V2XSDK;
+import com.vodafone.v2x.sdk.android.facade.enums.LogLevel;
 import com.vodafone.v2x.sdk.android.facade.enums.MqttClientKind;
 import com.vodafone.v2x.sdk.android.facade.enums.ServiceMode;
 import com.vodafone.v2x.sdk.android.facade.events.BaseEvent;
@@ -167,6 +170,9 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             cfg.withCAMPublishGroup(parameters.getCamPublishGroup());
             cfg.withCAMSubscribeGroup(parameters.getCamSubscribeGroup());
             sdkConfig = cfg.build();
+            if(BuildConfig.BUILD_TYPE=="debug") {
+                V2XSDK.getInstance().setLogLevel(LogLevel.LEVEL_DEBUG);
+            }
             V2XSDK.getInstance().initV2XService(this.getApplicationContext(), sdkConfig);
         } catch (Exception e) {
             e.printStackTrace();

@@ -93,7 +93,7 @@ public class CAMDrawing {
                 m.setSnippet(snippet);
                 m.setAnchor(0.5f, 0.5f);
                 m.setRotation(itsDrawing.getMapBearing() - heading);
-                Timber.tag(TAG).w("visible");
+                //Timber.tag(TAG).w("visible");
                 m.setVisible(true);
                 i++;
             }
