@@ -10,7 +10,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import java.util.Iterator;
 import java.util.List;
-import timber.log.Timber;
+
 
 /**
  * Class CAMDrawing is responsible for drawing the CAM (Cooperative Awareness Message) records on the map.
