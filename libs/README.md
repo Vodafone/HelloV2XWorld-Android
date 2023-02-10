@@ -1,2 +1,2 @@
-## Copy the Android "v2xsdk-release.aar" library file in this folder.
+## Copy the Android V2X SDK library file in this folder. 
 
