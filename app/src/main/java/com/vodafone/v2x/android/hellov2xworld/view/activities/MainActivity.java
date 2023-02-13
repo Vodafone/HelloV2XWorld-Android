@@ -11,7 +11,7 @@ import com.vodafone.v2x.android.hellov2xworld.BuildConfig;
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivityMainBinding;
 import com.vodafone.v2x.android.hellov2xworld.mapdrawing.MapManager;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
-import com.vodafone.v2x.sdk.android.facade.InvalidConfigException;
+import com.vodafone.v2x.sdk.android.facade.exception.InvalidConfigException;
 import com.vodafone.v2x.sdk.android.facade.SDKConfiguration;
 import com.vodafone.v2x.sdk.android.facade.V2XSDK;
 import com.vodafone.v2x.sdk.android.facade.enums.LogLevel;
