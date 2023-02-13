@@ -1,5 +1,5 @@
-## Puts the Android .aar libraries here.
+## Copy the Android V2X SDK library file in this folder. 
 
-In particular, there should be at least 1 files here that are the build output of our V2X SDK.
+In particular, there should be at least 1 file here that are the build output of our V2X SDK.
 
-This files is ``v2xsdk-release.aar``.
+This file is ``v2xsdk-release.aar``.
