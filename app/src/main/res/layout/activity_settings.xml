@@ -87,15 +87,13 @@
                 android:layout_weight="3"
                 android:text="@string/application_id" />
 
-            <EditText
-                android:id="@+id/et_applicationID"
+            <TextView
+                android:id="@+id/tv_applicationIDValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:background="@android:drawable/editbox_background"
                 android:importantForAutofill="no"
-                android:inputType="text"
-                android:labelFor="@id/tv_applicationID"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -117,15 +115,13 @@
                 android:layout_weight="3"
                 android:text="@string/application_token" />
 
-            <EditText
-                android:id="@+id/et_applicationToken"
+            <TextView
+                android:id="@+id/tv_applicationTokenValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:background="@android:drawable/editbox_background"
                 android:importantForAutofill="no"
-                android:inputType="text"
-                android:labelFor="@id/tv_applicationToken"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="18sp"

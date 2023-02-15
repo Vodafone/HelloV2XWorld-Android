@@ -2,13 +2,16 @@ package com.vodafone.v2x.android.hellov2xworld.view.activities;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.vodafone.v2x.android.hellov2xworld.R;
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivitySettingsBinding;
 import com.vodafone.v2x.android.hellov2xworld.utils.JavaMapUtils;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
 import com.vodafone.v2x.sdk.android.facade.enums.StationType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +19,8 @@ import java.util.Objects;
 
 
 /**
- This class represents the activity for settings configuration for the app.
- It provides an interface for setting up the station type, application ID, and application token.
+ * This class represents the activity for settings configuration for the app.
+ * It provides an interface for setting up the station type, application ID, and application token.
  */
 public class SettingsActivity extends AppCompatActivity {
     private ActivitySettingsBinding binding;
@@ -25,8 +28,6 @@ public class SettingsActivity extends AppCompatActivity {
     private Map<String, StationType> stationTypeMap;
     private ArrayAdapter<String> stationTypeSpinnerAdapter;
     private String preSavedStationType;
-    private String preSavedApplicationId;
-    private String preSavedApplicationToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +73,9 @@ public class SettingsActivity extends AppCompatActivity {
         int preSavedStationTypePosition = stationTypeSpinnerAdapter.getPosition(preSavedStationType);
         binding.spStationType.post(() -> binding.spStationType.setSelection(preSavedStationTypePosition));
 
-        preSavedApplicationId = parameters.getApplicationID();
-        binding.etApplicationID.setText(preSavedApplicationId);
+        binding.tvApplicationIDValue.setText(parameters.getApplicationID());
 
-        preSavedApplicationToken = parameters.getApplicationToken();
-        binding.etApplicationToken.setText(preSavedApplicationToken);
+        binding.tvApplicationTokenValue.setText(parameters.getApplicationToken());
     }
 
     private void setupButtons() {
@@ -84,13 +83,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         binding.btApply.setOnClickListener(v -> {
             String inputStationType = binding.spStationType.getSelectedItem().toString().trim();
-            String inputApplicationId = binding.etApplicationID.getText().toString().trim();
-            String inputApplicationToken = binding.etApplicationToken.getText().toString().trim();
-            if (!preSavedStationType.equals(inputStationType) || !preSavedApplicationId.equals(inputApplicationId) || !preSavedApplicationToken.equals(inputApplicationToken)) {
+            if (!preSavedStationType.equals(inputStationType)) {
                 boolean isStationTypeSet = parameters.setStationType(Objects.requireNonNull(stationTypeMap.get(inputStationType)));
-                boolean isApplicationIdSet = parameters.setApplicationId(inputApplicationId);
-                boolean isApplicationTokenSet = parameters.setApplicationToken(inputApplicationToken);
-                if (isStationTypeSet && isApplicationIdSet && isApplicationTokenSet) {
+                if (isStationTypeSet) {
                     ProcessPhoenix.triggerRebirth(SettingsActivity.this);
                 }
             } else {
