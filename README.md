@@ -110,7 +110,7 @@ You can also use this application as a model to start developing your own applic
 
 ## Version History
 
-* 1.0.2.0
+* 1.0.3.0
     * Initial Release
 
 ## License
