@@ -170,8 +170,10 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             cfg.withCAMPublishGroup(parameters.getCamPublishGroup());
             cfg.withCAMSubscribeGroup(parameters.getCamSubscribeGroup());
             sdkConfig = cfg.build();
-            if(BuildConfig.BUILD_TYPE=="debug") {
+            if(BuildConfig.BUILD_TYPE.equals("debug")) {
                 V2XSDK.getInstance().setLogLevel(LogLevel.LEVEL_DEBUG);
+            }else {
+                V2XSDK.getInstance().setLogLevel(LogLevel.LEVEL_NONE);
             }
             V2XSDK.getInstance().initV2XService(this.getApplicationContext(), sdkConfig);
         } catch (Exception e) {
