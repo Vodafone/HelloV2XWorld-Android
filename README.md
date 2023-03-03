@@ -117,3 +117,21 @@ You can also use this application as a model to start developing your own applic
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
+## Dependencies
+
+* org.osmdroid:osmdroid-android:6.1.14 / Apache Software License Version 2.0
+* com.google.code.gson:gson:2.10.1 / Apache 2.0
+* group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'	/ Apache 2.0
+* group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.5' / Eclipse Public License version 2.0
+* com.hivemq:hivemq-mqtt-client:1.3.0 / Apache 2.0
+* com.github.barteksc:android-pdf-viewer:3.2.0-beta.1 / Apache 2.0
+* com.jakewharton:process-phoenix:2.1.2	/ Apache 2.0
+* pub.devrel:easypermissions:3.0.0 / Apache 2.0
+* androidx.appcompat:appcompat:1.6.1 / Apache 2.0
+* com.google.android.material:material:1.8.0 / Apache 2.0
+* androidx.constraintlayout:constraintlayout:2.1.4	/ Apache 2.0
+* com.jakewharton.timber:timber:5.0.1	/ Apache 2.0
+* junit:junit:4.13.2	/ Eclipse Public License 1.0
+* androidx.test.ext:junit:1.1.5	/ Apache 2.0
+* androidx.test.espresso:espresso-core:3.5.1 / Apache 2.0
+
