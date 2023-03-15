@@ -11,7 +11,6 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,8 +23,6 @@ import timber.log.Timber;
  * It also uses {@link ITSDrawing} to get the current map bearing to rotate the CAM icon accordingly.
  */
 public class CAMDrawing {
-
-    private static final String TAG = "CAMDrawing";
     private final MapView mapView;
     private final IconsFactory iconsFactory;
     private final ITSDrawing itsDrawing;
@@ -64,17 +61,46 @@ public class CAMDrawing {
     }
 
     private void drawInUIThread() {
-        for (int i=0; i<camRecords.size(); i++) {
-            if (listCAMMarkers.containsKey(camRecords.get(i).getStationID())) {
-                updateMarkerInfo(Objects.requireNonNull(listCAMMarkers.get(camRecords.get(i).getStationID())), camRecords.get(i));
-            } else {
-                if (listCAMMarkers.size() <= maxNumberOfCAM) {
-                    createMarker(camRecords.get(i));
+        List<Long> listOfMarkerKey = new ArrayList<>(listCAMMarkers.keySet());
+        List<Long> listOfCamRecordsStationId = new ArrayList<>();
+
+        for (CAMRecord camRecord : camRecords) {
+            Long stationId = camRecord.getStationID();
+            listOfCamRecordsStationId.add(stationId);
+
+            if (stationId != V2XSDK.getInstance().getSdkConfiguration().getStationID()) {
+                if (listCAMMarkers.containsKey(stationId)) {
+                    updateMarkerInfo(Objects.requireNonNull(listCAMMarkers.get(stationId)), camRecord);
+                } else {
+                    if (listCAMMarkers.size() <= maxNumberOfCAM) {
+                        Timber.d("listCAMMarkers : %s", listCAMMarkers.size());
+                        createMarker(camRecord);
+                    }
+                }
+            }
+        }
+
+        //RemoveAll allow us to remove all present camRecords from the list of marker key
+        //It remain only the marker that are not in the camRecord list anymore
+        listOfMarkerKey.removeAll(listOfCamRecordsStationId);
+
+        //Here we hide & remove the marker that are no more in the camRecord list
+        if (!listCAMMarkers.isEmpty()) {
+            for (Long markerKey : listOfMarkerKey) {
+                Marker marker = listCAMMarkers.get(markerKey);
+                if (marker != null) {
+                    marker.setVisible(false);
+                    listCAMMarkers.remove(markerKey);
                 }
             }
         }
     }
 
+    /**
+     * The method create and store the new marker in a HashMap paired with its stationId
+     *
+     * @param camRecord The CAMRecord objects from which we create a merker.
+     */
     private void createMarker(CAMRecord camRecord) {
         Timber.d("createMarker");
 
@@ -89,6 +115,12 @@ public class CAMDrawing {
         marker.setVisible(true);
     }
 
+    /**
+     * The method update a marker already stored in the HashMap
+     *
+     * @param marker The marker object retrieve from the list of markers
+     * @param camRecord The CAMRecord objects from which we retrieve the value to be updated.
+     */
     private void updateMarkerInfo(Marker marker, CAMRecord camRecord) {
         Timber.d("updateMarker");
         double lon = camRecord.getLongitude();
