@@ -8,8 +8,13 @@ import com.vodafone.v2x.sdk.android.facade.records.cam.CAMRecord;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
-import java.util.Iterator;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
+
+import timber.log.Timber;
 
 
 /**
@@ -18,12 +23,12 @@ import java.util.List;
  * It also uses {@link ITSDrawing} to get the current map bearing to rotate the CAM icon accordingly.
  */
 public class CAMDrawing {
-
-    private static final String TAG = "CAMDrawing";
+    private final MapView mapView;
     private final IconsFactory iconsFactory;
     private final ITSDrawing itsDrawing;
+    private final HashMap<Long, Marker> listCAMMarkers = new HashMap<>();
 
-    private final Marker[] mCamMarkers = new Marker[50];
+    private static final int maxNumberOfCAM = 50;
     private List<CAMRecord> camRecords = null;
 
     /**
@@ -31,20 +36,13 @@ public class CAMDrawing {
      * It creates an array of markers for displaying CAM information on the map and adds them to the map overlay.
      * It also sets the default CAM icon for each marker.
      *
-     * @param map        The map view object to display CAM on the map.
+     * @param mapView    The map view object to display CAM on the map.
      * @param itsDrawing The ITSDrawing object to get the current map bearing.
      */
-    public CAMDrawing(MapView map, ITSDrawing itsDrawing) {
+    public CAMDrawing(MapView mapView, ITSDrawing itsDrawing) {
         iconsFactory = IconsFactory.getInstance();
         this.itsDrawing = itsDrawing;
-        for (int i = 0; i < mCamMarkers.length; i++) {
-            mCamMarkers[i] = new Marker(map);
-            mCamMarkers[i].setIcon(iconsFactory.getCAMIcon());
-            mCamMarkers[i].setImage(iconsFactory.getCAMIcon());
-            map.getOverlays().add(mCamMarkers[i]);
-            map.invalidate();
-            mCamMarkers[i].setVisible(false);
-        }
+        this.mapView = mapView;
     }
 
     /**
@@ -63,47 +61,78 @@ public class CAMDrawing {
     }
 
     private void drawInUIThread() {
-        Iterator<CAMRecord> it = camRecords.iterator();
-        int i = 0;
-        CAMRecord camRecord;
-        float lon;
-        float lat;
-        GeoPoint latLon;
-        while (it.hasNext()) {
-            // Exit if camMarkers table is full
-            if (i >= mCamMarkers.length) {
-                break;
-            }
-            Marker m = mCamMarkers[i];
-            camRecord = it.next();
-            if (camRecord.getStationID() != V2XSDK.getInstance().getSdkConfiguration().getStationID()) {
-                lon = camRecord.getLongitude();
-                lat = camRecord.getLatitude();
-                float heading = camRecord.getHeadingInDegree();
-                latLon = new GeoPoint(lat, lon);
-                String stationID = Long.toString(camRecord.getStationID());
-                StationType stationType = fromValue(camRecord.getStationType());
-                m.setIcon(iconsFactory.getCAMIcon());
+        List<Long> listOfMarkerKey = new ArrayList<>(listCAMMarkers.keySet());
+        List<Long> listOfCamRecordsStationId = new ArrayList<>();
 
-                m.setPosition(latLon);
-                String title = "CAM: StationID=" + stationID;
-                String snippet = "StationType=" + stationType.toString() + "\r\nSpeed=" + camRecord.getSpeedInKmH() + "km/h  \r\nHeading=" + camRecord.getHeadingInDegree() + " degree";
+        for (CAMRecord camRecord : camRecords) {
+            Long stationId = camRecord.getStationID();
+            listOfCamRecordsStationId.add(stationId);
 
-                m.setTitle(title);
-                m.setSnippet(snippet);
-                m.setAnchor(0.5f, 0.5f);
-                m.setRotation(itsDrawing.getMapBearing() - heading);
-                //Timber.tag(TAG).w("visible");
-                m.setVisible(true);
-                i++;
+            if (stationId != V2XSDK.getInstance().getSdkConfiguration().getStationID()) {
+                if (listCAMMarkers.containsKey(stationId)) {
+                    updateMarkerInfo(Objects.requireNonNull(listCAMMarkers.get(stationId)), camRecord);
+                } else {
+                    if (listCAMMarkers.size() <= maxNumberOfCAM) {
+                        Timber.d("listCAMMarkers : %s", listCAMMarkers.size());
+                        createMarker(camRecord);
+                    }
+                }
             }
         }
 
-        // hide remaining markers in the table
-        for (int j = i; j < mCamMarkers.length; j++) {
-            Marker m = mCamMarkers[j];
-            m.setVisible(false);
+        //RemoveAll allow us to remove all present camRecords from the list of marker key
+        //It remain only the marker that are not in the camRecord list anymore
+        listOfMarkerKey.removeAll(listOfCamRecordsStationId);
+
+        //Here we hide & remove the marker that are no more in the camRecord list
+        if (!listCAMMarkers.isEmpty()) {
+            for (Long markerKey : listOfMarkerKey) {
+                Marker marker = listCAMMarkers.get(markerKey);
+                if (marker != null) {
+                    marker.setVisible(false);
+                    listCAMMarkers.remove(markerKey);
+                }
+            }
         }
+    }
+
+    /**
+     * The method create and store the new marker in a HashMap paired with its stationId
+     *
+     * @param camRecord The CAMRecord objects from which we create a merker.
+     */
+    private void createMarker(CAMRecord camRecord) {
+        Timber.d("createMarker");
+
+        String title = "CAM: StationID=" + camRecord.getStationID();
+        Marker marker = new Marker(mapView);
+        marker.setTitle(title);
+        marker.setIcon(iconsFactory.getCAMIcon());
+        marker.setImage(iconsFactory.getCAMIcon());
+        updateMarkerInfo(marker, camRecord);
+        listCAMMarkers.put(camRecord.getStationID(), marker);
+        mapView.getOverlays().add(marker);
+        marker.setVisible(true);
+    }
+
+    /**
+     * The method update a marker already stored in the HashMap
+     *
+     * @param marker The marker object retrieve from the list of markers
+     * @param camRecord The CAMRecord objects from which we retrieve the value to be updated.
+     */
+    private void updateMarkerInfo(Marker marker, CAMRecord camRecord) {
+        Timber.d("updateMarker");
+        double lon = camRecord.getLongitude();
+        double lat = camRecord.getLatitude();
+        float heading = camRecord.getHeadingInDegree();
+        GeoPoint latLon = new GeoPoint(lat, lon);
+        StationType stationType = fromValue(camRecord.getStationType());
+        marker.setPosition(latLon);
+        String snippet = "StationType=" + stationType.toString() + "\r\nSpeed=" + camRecord.getSpeedInKmH() + "km/h  \r\nHeading=" + camRecord.getHeadingInDegree() + " degree";
+        marker.setSnippet(snippet);
+        marker.setAnchor(0.5f, 0.5f);
+        marker.setRotation(itsDrawing.getMapBearing() - heading);
     }
 
     private StationType fromValue(int value) {
