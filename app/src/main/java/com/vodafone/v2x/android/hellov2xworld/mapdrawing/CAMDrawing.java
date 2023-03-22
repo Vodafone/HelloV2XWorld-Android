@@ -31,14 +31,14 @@ public class CAMDrawing {
     private static final int maxNumberOfCAM = 50;
     private List<CAMRecord> camRecords = null;
 
-//    /**
-//     * Constructor of the class CAMDrawing.
-//     * It creates an array of markers for displaying CAM information on the map and adds them to the map overlay.
-//     * It also sets the default CAM icon for each marker.
-//     *
-//     * @param map        The map view object to display CAM on the map.
-//     * @param itsDrawing The ITSDrawing object to get the current map bearing.
-//     */
+    /**
+     * Constructor of the class CAMDrawing.
+     * It creates an array of markers for displaying CAM information on the map and adds them to the map overlay.
+     * It also sets the default CAM icon for each marker.
+     *
+     * @param mapView    The map view object to display CAM on the map.
+     * @param itsDrawing The ITSDrawing object to get the current map bearing.
+     */
     public CAMDrawing(MapView mapView, ITSDrawing itsDrawing) {
         iconsFactory = IconsFactory.getInstance();
         this.itsDrawing = itsDrawing;
