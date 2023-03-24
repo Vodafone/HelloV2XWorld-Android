@@ -40,7 +40,7 @@ public class ITSDrawing {
         mMap.getOverlays().add(mITSLocationMarker);
         mMap.invalidate();
         mITSLocationMarker.setPosition(startPoint);
-        mITSLocationMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        mITSLocationMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
     }
 
     /**
