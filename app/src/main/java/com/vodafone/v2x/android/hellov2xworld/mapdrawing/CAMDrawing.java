@@ -92,7 +92,7 @@ public class CAMDrawing {
                 if (listCAMMarkers.containsKey(stationID)) {
                     updateMarkerInfo(Objects.requireNonNull(listCAMMarkers.get(stationID)), camRecord);
                 } else {
-                    if (listCAMMarkers.size() <= maxNumberOfCAM) {
+                    if (listCAMMarkers.size() < maxNumberOfCAM) {
                         createMarker(camRecord);
                     }else {
                         Timber.w("Maximum number of CAM markers reached , size=%s",listCAMMarkers.size());
