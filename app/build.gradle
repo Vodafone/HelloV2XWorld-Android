@@ -18,8 +18,8 @@ android {
         applicationId "com.vodafone.v2x.android.hellov2xworld"
         minSdk 24
         targetSdk 33
-        versionCode 1040
-        versionName "1.0.4.0"
+        versionCode 1050
+        versionName "1.0.5.0"
         setProperty("archivesBaseName", "HelloV2xWorld_" + "V" + String.format("%03d",versionCode))
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

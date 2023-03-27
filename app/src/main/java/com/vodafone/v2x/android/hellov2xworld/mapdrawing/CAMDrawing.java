@@ -55,55 +55,61 @@ public class CAMDrawing {
     public void draw(List<CAMRecord> records) {
         if (records != null) {
             camRecords = records;
-
             new Handler(Looper.getMainLooper()).post(CAMDrawing.this::drawInUIThread);
         }
     }
 
     private void drawInUIThread() {
-        List<Long> listOfMarkerKey = new ArrayList<>(listCAMMarkers.keySet());
-        List<Long> listOfCamRecordsStationId = new ArrayList<>();
+        long userStationID = V2XSDK.getInstance().getSdkConfiguration().getStationID();
 
+        // Filter & Save CamRecords into a HashMap
+        HashMap<Long, CAMRecord> camRecordsHMap = new HashMap<>();
         for (CAMRecord camRecord : camRecords) {
-            Long stationId = camRecord.getStationID();
-            listOfCamRecordsStationId.add(stationId);
-
-            if (stationId != V2XSDK.getInstance().getSdkConfiguration().getStationID()) {
-                if (listCAMMarkers.containsKey(stationId)) {
-                    updateMarkerInfo(Objects.requireNonNull(listCAMMarkers.get(stationId)), camRecord);
-                } else {
-                    if (listCAMMarkers.size() <= maxNumberOfCAM) {
-                        Timber.d("listCAMMarkers : %s", listCAMMarkers.size());
-                        createMarker(camRecord);
+            if (camRecord.getStationID() != userStationID) {
+                camRecordsHMap.put(camRecord.getStationID(), camRecord);
+            }
+        }
+        // Remove obsolete markers from the listCAMMarkers
+        List<Long> listOfMarkerKey = new ArrayList<>(listCAMMarkers.keySet());
+        if (!listCAMMarkers.isEmpty()) {
+            for (Long markerKey : listOfMarkerKey) {
+                if (!camRecordsHMap.containsKey(markerKey)) {
+                    Timber.d("removeMarker");
+                    Marker marker = listCAMMarkers.get(markerKey);
+                    if (marker != null) {
+                        marker.setVisible(false);
+                        listCAMMarkers.remove(markerKey);
+                        mapView.getOverlays().remove(marker);
+                        marker.closeInfoWindow();
                     }
                 }
             }
         }
-
-        //RemoveAll allow us to remove all present camRecords from the list of marker key
-        //It remain only the marker that are not in the camRecord list anymore
-        listOfMarkerKey.removeAll(listOfCamRecordsStationId);
-
-        //Here we hide & remove the marker that are no more in the camRecord list
-        if (!listCAMMarkers.isEmpty()) {
-            for (Long markerKey : listOfMarkerKey) {
-                Marker marker = listCAMMarkers.get(markerKey);
-                if (marker != null) {
-                    marker.setVisible(false);
-                    listCAMMarkers.remove(markerKey);
+        // Add or update markers
+        for (CAMRecord camRecord : camRecords) {
+            long stationID = camRecord.getStationID();
+            if (stationID != userStationID) {
+                if (listCAMMarkers.containsKey(stationID)) {
+                    updateMarkerInfo(Objects.requireNonNull(listCAMMarkers.get(stationID)), camRecord);
+                } else {
+                    if (listCAMMarkers.size() < maxNumberOfCAM) {
+                        createMarker(camRecord);
+                    }else {
+                        Timber.w("Maximum number of CAM markers reached , size=%s",listCAMMarkers.size());
+                    }
                 }
             }
         }
     }
 
+
     /**
      * The method create and store the new marker in a HashMap paired with its stationId
      *
-     * @param camRecord The CAMRecord objects from which we create a merker.
+     * @param camRecord The CAMRecord objects from which we create a marker.
      */
     private void createMarker(CAMRecord camRecord) {
-        Timber.d("createMarker");
-
+        Timber.d("createMarker (stationID: %s)",camRecord.getStationID());
         String title = "CAM: StationID=" + camRecord.getStationID();
         Marker marker = new Marker(mapView);
         marker.setTitle(title);
@@ -113,6 +119,7 @@ public class CAMDrawing {
         listCAMMarkers.put(camRecord.getStationID(), marker);
         mapView.getOverlays().add(marker);
         marker.setVisible(true);
+        Timber.d("=> listCAMMarkers size = %s",listCAMMarkers.size());
     }
 
     /**
@@ -122,7 +129,7 @@ public class CAMDrawing {
      * @param camRecord The CAMRecord objects from which we retrieve the value to be updated.
      */
     private void updateMarkerInfo(Marker marker, CAMRecord camRecord) {
-        Timber.d("updateMarker");
+        Timber.d("updateMarker (stationID: %s)",camRecord.getStationID());
         double lon = camRecord.getLongitude();
         double lat = camRecord.getLatitude();
         float heading = camRecord.getHeadingInDegree();
@@ -131,7 +138,7 @@ public class CAMDrawing {
         marker.setPosition(latLon);
         String snippet = "StationType=" + stationType.toString() + "\r\nSpeed=" + camRecord.getSpeedInKmH() + "km/h  \r\nHeading=" + camRecord.getHeadingInDegree() + " degree";
         marker.setSnippet(snippet);
-        marker.setAnchor(0.5f, 0.5f);
+        marker.setAnchor(0.5f,0.5f);
         marker.setRotation(itsDrawing.getMapBearing() - heading);
     }
 
