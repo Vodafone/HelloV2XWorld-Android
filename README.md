@@ -1,3 +1,5 @@
+[![Project Map](https://sourcespy.com/shield.svg)](https://sourcespy.com/github/vodafonehellov2xworldandroid/)
+
 # HelloV2XWorld-Android
 
 In this repository you can find an example of V2X application that shows how to use the V2X-SDK in a ready to use Android Application.
