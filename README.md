@@ -83,7 +83,7 @@ You can also use this application as a model to start developing your own applic
 * Copy the "v2xsdk-release.aar" file to the app/libs folder of your project.  
 ![image](https://user-images.githubusercontent.com/122537808/217487130-914d2ef5-ea17-4cbd-8fbe-d4795c9401f1.png)
 
-### Set the Application_ID & Application_ID in your project
+### Set the Application_ID & Application_Token in your project
 
 ![AStudio](https://github.com/Vodafone/HelloV2XWorld-Android/assets/122537808/bd9c3a7d-6f55-4ca8-89c1-0af995a31318)
 
