@@ -46,6 +46,16 @@ You can also use this application as a model to start developing your own applic
 ![image](https://user-images.githubusercontent.com/122537808/217552264-0fb27214-1d75-424b-8740-71678e837216.png)
 **=> Your browser downloads the archive "Android_V2X_SDK_Documentation_Vabc.zip"**    
 * Open the archive and save on your laptop the Javadoc and the user Guide
+
+### Retrieve the Application_ID & Application_Token, you will need these 2 parameters later to configure the HelloV2XWorld app.
+* Go the [Test application](https://de-he.step.vodafone.com/applications) Test Application Web page.
+* Click on the Test Application button
+![TestApplicationButton](https://github.com/Vodafone/HelloV2XWorld-Android/assets/122537808/f0ca89ed-241c-472c-a4f4-3b5ab5d1b856)  
+* Click on the Next Button two times
+* Select the Application ID option and Copy the ApplicationID and save it as ApplicationID
+![TestAppID](https://github.com/Vodafone/HelloV2XWorld-Android/assets/122537808/2945bf3d-e6fe-4b33-8a58-845a612256f8)
+* Select the SDK Key option , copy the SDK Key and save it as ApplicationToken
+![TestAppToken](https://github.com/Vodafone/HelloV2XWorld-Android/assets/122537808/c4ac1a74-ca59-4faa-82c5-2eae6cd4f6f1)
   
   
 ### Clone the HelloV2XWorld Application
