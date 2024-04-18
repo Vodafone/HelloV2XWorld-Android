@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splashView"
+    style="@style/Screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".view.activities.SplashActivity">
+
+    <TextView
+        android:id="@+id/tv_termsAndConditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:padding="@dimen/medium_padding"
+        android:text="@string/terms_and_conditions"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/round_shape_with_borders"
+        android:padding="@dimen/medium_padding">
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView_termsAndConditions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_pageCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+
+        android:id="@+id/wrap_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:padding="@dimen/medium_padding">
+
+        <Button
+            android:id="@+id/bt_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:alpha=".8"
+            android:background="@drawable/round_shape_white"
+            android:paddingStart="@dimen/large_padding"
+            android:paddingTop="@dimen/medium_padding"
+            android:paddingEnd="@dimen/large_padding"
+            android:paddingBottom="@dimen/medium_padding"
+            android:text="@string/exit" />
+
+        <Button
+            android:id="@+id/bt_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:alpha=".4"
+            android:background="@drawable/round_shape_white"
+            android:enabled="false"
+            android:padding="@dimen/large_padding"
+            android:paddingStart="@dimen/large_padding"
+            android:paddingTop="@dimen/medium_padding"
+            android:paddingEnd="@dimen/large_padding"
+            android:paddingBottom="@dimen/medium_padding"
+            android:text="@string/accept" />
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">HelloV2XWorld</string>
+
+    //Main activity
+    <string name="status">Status</string>
+
+    // Splash Activity
+    <string name="terms_and_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="exit">Exit</string>
+    <string name="accept">Accept</string>
+    <string name="page_counter">%d/%d</string>
+
+    // Settings Activity
+    <string name="settings_title">Settings</string>
+    <string name="station_type">Station type</string>
+    <string name="application_id">Application ID</string>
+    <string name="application_token">Application token</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+
+    //Station types
+    <string name="unknown">Unknown</string>
+    <string name="pedestrian">Pedestrian</string>
+    <string name="cyclist">Cyclist</string>
+    <string name="moped">Moped</string>
+    <string name="motorcycle">Motorcycle</string>
+    <string name="passenger_car">Passenger car</string>
+    <string name="bus">Bus</string>
+    <string name="light_truck">Light truck</string>
+    <string name="heavy_truck">Heavy truck</string>
+    <string name="trailer">Trailer</string>
+    <string name="special_vehicles">Special vehicles</string>
+    <string name="tram">Tram</string>
+    <string name="road_side_units">Road side units</string>
+    <string name="animal">Animal</string>
+
+    <string name="settings_button">Settings button</string>
+    <string name="select_station_type_arrow">Select station type arrow</string>
+</resources>
