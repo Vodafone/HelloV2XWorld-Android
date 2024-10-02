@@ -72,7 +72,7 @@ public class MapManager {
         if (loc != null) {
             currentLocation = new GeoPoint(loc.getLatitude(), loc.getLongitude());
         } else {
-            currentLocation = new GeoPoint(45.83695542096091f, 8.790795282477621f);
+            currentLocation = new GeoPoint(45.83695542096091f, 8.79079528247762f);
         }
         mapController.setCenter(currentLocation);
     }
