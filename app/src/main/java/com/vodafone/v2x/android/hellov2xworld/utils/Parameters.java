@@ -13,7 +13,7 @@ import com.vodafone.v2x.sdk.android.facade.enums.StationType;
  */
 public class Parameters {
     private static final StationType DEFAULT_STATION_TYPE = StationType.PASSENGER_CAR;
-    private static final String DEFAULT_APPLICATION_ID = "APP_ID ";
+    private static final String DEFAULT_APPLICATION_ID = "APP_ID";
     private static final String DEFAULT_APPLICATION_TOKEN = "APP_TOKEN";
     private static final String CAM_SUBSCRIBE_GROUP = "510298_8";
     private static final String CAM_PUBLISH_GROUP = "510298_8";
