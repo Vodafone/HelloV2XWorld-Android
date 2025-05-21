@@ -7,8 +7,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import androidx.core.app.ActivityCompat;
-import com.vodafone.v2x.sdk.android.facade.records.ITSLocationRecord;
-import com.vodafone.v2x.sdk.android.facade.records.cam.CAMRecord;
+
+import com.vodafone.v2xsdk4javav2.facade.records.ITSLocationRecord;
+import com.vodafone.v2xsdk4javav2.facade.records.cam.CAMRecord;
+
 import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;

@@ -2,9 +2,11 @@ package com.vodafone.v2x.android.hellov2xworld.mapdrawing;
 
 import android.os.Handler;
 import android.os.Looper;
-import com.vodafone.v2x.sdk.android.facade.V2XSDK;
-import com.vodafone.v2x.sdk.android.facade.models.GpsLocation;
-import com.vodafone.v2x.sdk.android.facade.records.ITSLocationRecord;
+
+import com.vodafone.v2x.sdk.android.AndroidV2XSDK;
+import com.vodafone.v2xsdk4javav2.facade.models.GnssLocation;
+import com.vodafone.v2xsdk4javav2.facade.records.ITSLocationRecord;
+
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
@@ -58,7 +60,7 @@ public class ITSDrawing {
     private void drawInUIThread() {
         if (lastRecord != null) {
             Timber.tag(TAG).d("onITSUpdate");
-            GpsLocation location = lastRecord.getLocation();
+            GnssLocation location = lastRecord.getLocation();
             float lat = (float) location.getLatitude();
             float lon = (float) location.getLongitude();
             GeoPoint latitudeLongitude = new GeoPoint(lat, lon);
@@ -68,8 +70,8 @@ public class ITSDrawing {
             float speedKmh = location.getSpeedInKmPerHour();
             mapBearing = itsBearing;   // forcing mapBearing to 0 if speed <=1km/h has been removed by JLD
             Timber.tag(TAG).d("Map bearing %s", mapBearing);
-            String title = "ITS: StationID=" + V2XSDK.getInstance().getSdkConfiguration().getStationID();
-            String snippet = "StationType=" + V2XSDK.getInstance().getSdkConfiguration().getStationType() + "\r\nSpeed:" + speedKmh + " km/h \r\nHeading:" + itsBearing + " degree";
+            String title = "ITS: StationID=" + AndroidV2XSDK.getInstance().getStationId();
+            String snippet = "StationType=" + AndroidV2XSDK.getInstance().getStationType() + "\r\nSpeed:" + speedKmh + " km/h \r\nHeading:" + itsBearing + " degree";
             mITSLocationMarker.setTitle(title);
             mITSLocationMarker.setSnippet(snippet);
             mITSLocationMarker.setPosition(latitudeLongitude);

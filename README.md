@@ -24,26 +24,26 @@ You can also use this application as a model to start developing your own applic
 ### Download the V2X-SDK library for Android
 
 * Register yourself on the [STEP Web portal](https://step.vodafone.com/)    
-![STEPWP_Signup_Annoted](https://user-images.githubusercontent.com/122537808/217470142-8de75aad-462e-42f2-b70e-2535766ce3fc.png)
+![STEPWP_Signup_Annoted](https://user-images.githubusercontent.com/124599387/219050113-50e5a149-1559-4776-af0f-30d3ad16c5ef.png)
 
 * Go to the [STEP Web portal](https://step.vodafone.com/) webpage and login.  
 **=>Enter your credentials**   
-![STEPWP_Login1_Annoted](https://user-images.githubusercontent.com/122537808/217473639-455f00ff-6ed8-44bb-a2b9-a67430e4e8c0.png)  
+![STEPWP_Login1_Annoted](https://user-images.githubusercontent.com/124599387/219050444-cf48a53c-60e4-458a-a021-5841a789ccc6.png)
 **=>Enter your pin Code**   
-![STEPWP_Login2_annoted](https://user-images.githubusercontent.com/122537808/217473122-e0c54fc5-20b3-4576-9010-de3916b09d8e.png)  
+![STEPWP_Login2_annoted](https://user-images.githubusercontent.com/124599387/219347713-ae3ab91e-092d-4222-9241-91898eb10907.png)
 
-* Navigate to the page "Documentation" and select the "SDK documentation for Android" option.  
-![image](https://user-images.githubusercontent.com/122537808/217475735-292c0902-a0f5-41d3-9987-875069a92279.png)
+* Navigate to "Access SDK" section and select the "Get SDK for Android" option.  
+![image](readme-images/2.png)
 
 * In the "SDK documentation for Android" page , click on the "Download SDK" button.  
-![image](https://user-images.githubusercontent.com/122537808/217475876-45c8af5d-c11e-42f9-93cb-eb76ecfa7e44.png)  
+![image](readme-images/4.png)
 **=> Your browser downloads the archive "VodafoneV2X_Android_SDK.rar"**  
-* Open the archive, extract the V2X-SDK library file called "v2xsdk-release.aar" and save it on your laptop. 
+* Open the archive, extract the V2X-SDK library file called "Android V2X SDK Vabc-release.aar" and save it on your laptop. 
 
 ### Download the Android V2X-SDK documentation
 
 * In the "SDK documentation for Android" page , click on the "Download documentation" button.  
-![image](https://user-images.githubusercontent.com/122537808/217552264-0fb27214-1d75-424b-8740-71678e837216.png)
+![image](readme-images/4.png)
 **=> Your browser downloads the archive "Android_V2X_SDK_Documentation_Vabc.zip"**    
 * Open the archive and save on your laptop the Javadoc and the user Guide
 
@@ -141,10 +141,6 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 ## Dependencies
 
 * org.osmdroid:osmdroid-android:6.1.14 / Apache Software License Version 2.0
-* com.google.code.gson:gson:2.10.1 / Apache 2.0
-* group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'	/ Apache 2.0
-* group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.5' / Eclipse Public License version 2.0
-* com.hivemq:hivemq-mqtt-client:1.3.0 / Apache 2.0
 * com.github.barteksc:android-pdf-viewer:3.2.0-beta.1 / Apache 2.0
 * com.jakewharton:process-phoenix:2.1.2	/ Apache 2.0
 * pub.devrel:easypermissions:3.0.0 / Apache 2.0

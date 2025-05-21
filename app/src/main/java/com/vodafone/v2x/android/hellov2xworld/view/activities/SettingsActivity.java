@@ -10,7 +10,7 @@ import com.vodafone.v2x.android.hellov2xworld.R;
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivitySettingsBinding;
 import com.vodafone.v2x.android.hellov2xworld.utils.JavaMapUtils;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
-import com.vodafone.v2x.sdk.android.facade.enums.StationType;
+import com.vodafone.v2xsdk4javav2.facade.enums.StationType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
