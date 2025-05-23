@@ -125,7 +125,7 @@ You can also use this application as a model to start developing your own applic
 ![image](https://user-images.githubusercontent.com/122537808/217569716-3a8175b0-5e30-4a42-9ade-4800a537dd68.png)
 
 * You can change your station type by accessing the setting page
-![App Parameters2](https://github.com/Vodafone/HelloV2XWorld-Android/assets/122537808/e991c6da-0e77-4736-972b-d6edf26594ec)
+![App Parameters2](readme-images/5.png)
    
 
 
