@@ -18,8 +18,8 @@ android {
         applicationId "com.vodafone.v2x.android.hellov2xworld"
         minSdk 24
         targetSdk 34
-        versionCode 1073
-        versionName "1.0.7.3"
+        versionCode 1074
+        versionName "1.0.7.4"
         setProperty("archivesBaseName", "HelloV2xWorld_" + "V" + String.format("%03d",versionCode))
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,7 +53,7 @@ android {
 
 dependencies {
 
-    implementation fileTree(dir: 'libs', include: ['Android V2X SDK V310-release.aar'])
+    implementation fileTree(dir: 'libs', include: ['Android V2X SDK V320-release.aar'])
 
     implementation 'org.osmdroid:osmdroid-android:6.1.20'
     implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.1'

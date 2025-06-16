@@ -52,6 +52,10 @@ public class ITSDrawing {
      */
     public void draw(ITSLocationRecord itsLocationRecord) {
         if (itsLocationRecord != null) {
+            if (lastRecord == null) {
+                mMap.setZoomLevel(19);
+                mMap.postInvalidate();
+            }
             lastRecord = itsLocationRecord;
             new Handler(Looper.getMainLooper()).post(ITSDrawing.this::drawInUIThread);
         }
