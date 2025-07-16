@@ -11,20 +11,20 @@ import com.vodafone.v2x.android.hellov2xworld.BuildConfig;
 import com.vodafone.v2x.android.hellov2xworld.databinding.ActivityMainBinding;
 import com.vodafone.v2x.android.hellov2xworld.mapdrawing.MapManager;
 import com.vodafone.v2x.android.hellov2xworld.utils.Parameters;
-import com.vodafone.v2x.sdk.android.facade.exception.InvalidConfigException;
-import com.vodafone.v2x.sdk.android.facade.SDKConfiguration;
-import com.vodafone.v2x.sdk.android.facade.V2XSDK;
-import com.vodafone.v2x.sdk.android.facade.enums.LogLevel;
-import com.vodafone.v2x.sdk.android.facade.enums.MqttClientKind;
-import com.vodafone.v2x.sdk.android.facade.enums.ServiceMode;
-import com.vodafone.v2x.sdk.android.facade.events.BaseEvent;
-import com.vodafone.v2x.sdk.android.facade.events.EventCamListChanged;
-import com.vodafone.v2x.sdk.android.facade.events.EventITSLocationListChanged;
-import com.vodafone.v2x.sdk.android.facade.events.EventListener;
-import com.vodafone.v2x.sdk.android.facade.events.EventType;
-import com.vodafone.v2x.sdk.android.facade.events.EventV2XConnectivityStateChanged;
-import com.vodafone.v2x.sdk.android.facade.records.ITSLocationRecord;
-import com.vodafone.v2x.sdk.android.facade.records.cam.CAMRecord;
+import com.vodafone.v2x.sdk.android.AndroidV2XSDK;
+import com.vodafone.v2xsdk4javav2.facade.SDKConfiguration;
+import com.vodafone.v2xsdk4javav2.facade.V2XSDK;
+import com.vodafone.v2xsdk4javav2.facade.enums.LogLevel;
+import com.vodafone.v2xsdk4javav2.facade.enums.ServiceMode;
+import com.vodafone.v2xsdk4javav2.facade.events.BaseEvent;
+import com.vodafone.v2xsdk4javav2.facade.events.EventCamListChanged;
+import com.vodafone.v2xsdk4javav2.facade.events.EventITSLocationListChanged;
+import com.vodafone.v2xsdk4javav2.facade.events.EventListener;
+import com.vodafone.v2xsdk4javav2.facade.events.EventType;
+import com.vodafone.v2xsdk4javav2.facade.events.EventV2XConnectivityStateChanged;
+import com.vodafone.v2xsdk4javav2.facade.exceptions.InvalidConfigException;
+import com.vodafone.v2xsdk4javav2.facade.records.ITSLocationRecord;
+import com.vodafone.v2xsdk4javav2.facade.records.cam.CAMRecord;
 import org.osmdroid.config.Configuration;
 import java.util.List;
 import timber.log.Timber;
@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements EventListener {
      SDK Configuration instance
      */
     private SDKConfiguration sdkConfig;
+    /**
+     * CAM Service enabling flag
+     */
+    private boolean isCAMServiceEnabled = true;
     /**
      Method that is called when the activity is created.
      It initializes the UI and checks the device orientation.
@@ -81,10 +85,10 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         super.onStart();
         Timber.d("Lifecycle : onStart() isOrientationLandscape: %s", isOrientationLandscape);
         if (isOrientationLandscape) {
-            if (!V2XSDK.getInstance().isV2XServiceInitialized()) {
+            if (!AndroidV2XSDK.getInstance().isV2XServiceInitialized()) {
                 initV2XService();
             }
-            if (!V2XSDK.getInstance().isV2XServiceStarted()) {
+            if (!AndroidV2XSDK.getInstance().isV2XServiceRunning()) {
                 startV2XService();
             }
         }
@@ -101,21 +105,21 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         if (isOrientationLandscape) {
             binding.map.onResume();
             Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
-            if (!V2XSDK.getInstance().isV2XServiceInitialized()) {
+            if (!AndroidV2XSDK.getInstance().isV2XServiceInitialized()) {
                 initV2XService();
             }
-            if (!V2XSDK.getInstance().isV2XServiceStarted()) {
+            if (!AndroidV2XSDK.getInstance().isV2XServiceRunning()) {
                 startV2XService();
             }
-            if (V2XSDK.getInstance().isV2XServiceInitialized() && V2XSDK.getInstance().isV2XServiceStarted()) {
-                V2XSDK.getInstance().subscribe(this,
+            if (AndroidV2XSDK.getInstance().isV2XServiceInitialized() && AndroidV2XSDK.getInstance().isV2XServiceRunning()) {
+                AndroidV2XSDK.getInstance().subscribe(this,
                         EventType.CAM_LIST_CHANGED,
                         EventType.ITS_LOCATION_LIST_CHANGED,
                         EventType.V2X_CONNECTIVITY_STATE_CHANGED
                 );
-                if (!V2XSDK.getInstance().isCAMServiceRunning() && sdkConfig.isCAMServiceEnabled()) {
+                if (!AndroidV2XSDK.getInstance().isCAMServiceRunning() && isCAMServiceEnabled) {
                     try {
-                        V2XSDK.getInstance().startCAMService();
+                        AndroidV2XSDK.getInstance().startCAMService();
                     } catch (IllegalStateException e) {
                         Timber.e(e, "E1018");
                     }
@@ -142,12 +146,12 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         super.onDestroy();
         Timber.d("Lifecycle : onDestroy() isOrientationLandscape: %s", isOrientationLandscape);
         if (isOrientationLandscape) {
-            if (V2XSDK.getInstance().isV2XServiceInitialized() && V2XSDK.getInstance().isV2XServiceStarted()) {
-                if (V2XSDK.getInstance().isCAMServiceRunning()) {
-                    V2XSDK.getInstance().stopCAMService();
+            if (AndroidV2XSDK.getInstance().isV2XServiceInitialized() && AndroidV2XSDK.getInstance().isV2XServiceRunning()) {
+                if (AndroidV2XSDK.getInstance().isCAMServiceRunning()) {
+                    AndroidV2XSDK.getInstance().stopCAMService();
                 }
-                V2XSDK.getInstance().unsubscribe(this);
-                V2XSDK.getInstance().stopV2XService();
+                AndroidV2XSDK.getInstance().unsubscribe(this);
+                AndroidV2XSDK.getInstance().stopV2XService();
             }
         }
     }
@@ -159,23 +163,20 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     private void initV2XService() {
         try {
             Parameters parameters = Parameters.getInstance(this);
-            MqttClientKind mqttClient = MqttClientKind.HiveMQv3;
-            SDKConfiguration.SDKConfigurationBuilder cfg = new SDKConfiguration.SDKConfigurationBuilder()
-                    .withMqttClientKind(mqttClient);
-            cfg.withMqttUsername(parameters.getApplicationID());
-            cfg.withMqttPassword(parameters.getApplicationToken());
-            cfg.withStationType(parameters.getStationType());
-            cfg.withCAMServiceEnabled(true);
-            cfg.withCamServiceMode(ServiceMode.TxAndRx);
-            cfg.withCAMPublishGroup(parameters.getCamPublishGroup());
-            cfg.withCAMSubscribeGroup(parameters.getCamSubscribeGroup());
+            SDKConfiguration.SDKConfigurationBuilder cfg = SDKConfiguration.builder()
+                    .applicationID(parameters.getApplicationID())
+                    .applicationToken(parameters.getApplicationToken())
+                    .stationType(parameters.getStationType())
+                    .camServiceMode(ServiceMode.TxAndRx)
+                    .camPublishGroup(parameters.getCamPublishGroup())
+                    .camSubscribeGroup(parameters.getCamSubscribeGroup());
             sdkConfig = cfg.build();
             if(BuildConfig.BUILD_TYPE.equals("debug")) {
-                V2XSDK.getInstance().setLogLevel(LogLevel.LEVEL_DEBUG);
+                AndroidV2XSDK.getInstance().setLogLevel(LogLevel.DEBUG);
             }else {
-                V2XSDK.getInstance().setLogLevel(LogLevel.LEVEL_NONE);
+                AndroidV2XSDK.getInstance().setLogLevel(LogLevel.OFF);
             }
-            V2XSDK.getInstance().initV2XService(this.getApplicationContext(), sdkConfig);
+            AndroidV2XSDK.getInstance().initV2XService(this.getApplicationContext(), sdkConfig);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -186,8 +187,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
      */
     private void startV2XService() {
         try {
-            if (!V2XSDK.getInstance().isV2XServiceStarted()) {
-                V2XSDK.getInstance().startV2XService(0, null);
+            if (!AndroidV2XSDK.getInstance().isV2XServiceRunning()) {
+                AndroidV2XSDK.getInstance().startV2XService(0, null);
             }
         } catch (InvalidConfigException e) {
             e.printStackTrace();

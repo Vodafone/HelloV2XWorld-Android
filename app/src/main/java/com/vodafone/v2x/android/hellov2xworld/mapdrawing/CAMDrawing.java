@@ -2,9 +2,11 @@ package com.vodafone.v2x.android.hellov2xworld.mapdrawing;
 
 import android.os.Handler;
 import android.os.Looper;
-import com.vodafone.v2x.sdk.android.facade.V2XSDK;
-import com.vodafone.v2x.sdk.android.facade.enums.StationType;
-import com.vodafone.v2x.sdk.android.facade.records.cam.CAMRecord;
+
+import com.vodafone.v2x.sdk.android.AndroidV2XSDK;
+import com.vodafone.v2xsdk4javav2.facade.enums.StationType;
+import com.vodafone.v2xsdk4javav2.facade.records.cam.CAMRecord;
+
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
@@ -60,7 +62,7 @@ public class CAMDrawing {
     }
 
     private void drawInUIThread() {
-        long userStationID = V2XSDK.getInstance().getSdkConfiguration().getStationID();
+        long userStationID = AndroidV2XSDK.getInstance().getStationId();
 
         // Filter & Save CamRecords into a HashMap
         HashMap<Long, CAMRecord> camRecordsHMap = new HashMap<>();

@@ -19,35 +19,46 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepattributes Exceptions
+-keepattributes MethodParameters
 -keepattributes Signature,InnerClasses,SourceFile,LineNumberTable
+
 -keepclasseswithmembers class io.netty.** {
     *;
 }
+
 -keepnames class io.netty.** {
     *;
 }
+
 -keepclasseswithmembers class org.jctools.queues.** {
     *;
 }
+
 -keepnames class org.jctools.queues.** {
     *;
 }
+
 -keepclassmembers class * extends java.lang.Enum {
     <fields>;
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
 
+-keep class org.eclipse.paho.** { *; }
+
+-keep class sun.misc.Unsafe { *; }
+
 #SDK side
 -keep public class com.unigone.** {
   public protected *;
 }
--keep public class com.vodafone.v2x.sdk.android.facade.** {
+
+-keep public class com.vodafone.v2xsdk4javav2.facade.** {
   public protected *;
 }
--keepattributes Exceptions
--keepattributes MethodParameters
--keep public class com.vodafone.v2x.sdk.android.core.messages.cpm_pdu_descriptions.** {
+
+-keep public class com.vodafone.v2xsdk4javav2.core.messages.** {
   public protected *;
 }
 #For PDF view
