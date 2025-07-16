@@ -134,6 +134,9 @@ You can also use this application as a model to start developing your own applic
 * 1.0.4.0
     * Initial Release
 
+* 1.0.7.4
+    * New V2X SDK V2 ETSI R2
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
